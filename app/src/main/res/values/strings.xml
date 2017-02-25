@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NearbyConnection</string>
+    <string name="service_id">me.tatocaster.nearbyconnection</string>
+
+
+    <string name="discover_nearby_devices">Discover nearby devices</string>
+    <string name="share_device_information">Share device information</string>
+</resources>

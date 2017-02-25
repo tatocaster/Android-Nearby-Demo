@@ -1,0 +1,75 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0-rc1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
+    versionCode = 1
+    versionName = '1.0'
+
+    supportLibsVersion = '25.1.0'
+
+    retrofitVersion = '2.0.0'
+    okHttpVersion = '3.0.1'
+}
+
+ext.libraries = [
+        supportV7                : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+        supportDesign            : 'com.android.support:design:' + supportLibsVersion,
+        cardView                 : 'com.android.support:cardview-v7:' + supportLibsVersion,
+        recyclerView             : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
+        constraintLayout         : 'com.android.support.constraint:constraint-layout:1.0.0-beta5',
+
+        butterknife              : 'com.jakewharton:butterknife:8.4.0',
+        butterknifeProcessor     : 'com.jakewharton:butterknife-compiler:8.4.0',
+
+        rxJava                   : 'io.reactivex:rxandroid:1.2.1',
+        rxAndroid                : 'io.reactivex:rxjava:1.1.6',
+        rxJavaProguard           : 'com.artemzin.rxjava:proguard-rules:1.2.6.0',
+
+        rxPermissions            : 'com.tbruyelle.rxpermissions:rxpermissions:0.9.0@aar',
+
+        okHttp                   : 'com.squareup.okhttp3:okhttp:' + okHttpVersion,
+        okHttpLoggingInterceptor : 'com.squareup.okhttp3:logging-interceptor:' + okHttpVersion,
+
+        gson                     : 'com.google.code.gson:gson:2.7',
+        retrofit                 : 'com.squareup.retrofit2:retrofit:' + retrofitVersion,
+        retrofitRxJava           : 'com.squareup.retrofit2:adapter-rxjava:' + retrofitVersion,
+        retrofitGsonConverter    : 'com.squareup.retrofit2:converter-gson:' + retrofitVersion,
+
+        dagger                   : 'com.google.dagger:dagger:2.9',
+        daggerAnnotationProcessor: 'com.google.dagger:dagger-compiler:2.9',
+
+
+        leakCanary               : 'com.squareup.leakcanary:leakcanary-android:1.5',
+        leakCanaryReleaseAndTest : 'com.squareup.leakcanary:leakcanary-android-no-op:1.5',
+
+        jUnit                    : 'junit:junit:4.12',
+]

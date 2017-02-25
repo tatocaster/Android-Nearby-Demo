@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "me.tatocaster.nearbyconnection"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        dev21 {
+            minSdkVersion = 21
+        }
+
+        prod {
+            minSdkVersion = libraries.minSdkVersion
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {
+        jvmArgs '-noverify'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    //support libs
+    compile libraries.supportV7
+    compile libraries.supportDesign
+
+    compile 'com.google.android.gms:play-services-nearby:10.2.0'
+
+
+    compile libraries.gson
+    compile libraries.butterknife
+    annotationProcessor libraries.butterknifeProcessor
+
+    //testing
+    testCompile libraries.jUnit
+
+    //leaks
+    debugCompile libraries.leakCanary
+    releaseCompile libraries.leakCanaryReleaseAndTest
+    testCompile libraries.leakCanaryReleaseAndTest
+}
