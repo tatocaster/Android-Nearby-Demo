@@ -1,7 +1,5 @@
 package me.tatocaster.nearbyconnection;
 
-import android.os.Build;
-
 import com.google.android.gms.nearby.messages.Message;
 import com.google.gson.Gson;
 
@@ -18,8 +16,8 @@ public class DeviceMessage {
     private final String mMessageBody;
 
 
-    public static Message newNearbyMessage(String instanceId) {
-        DeviceMessage deviceMessage = new DeviceMessage(instanceId);
+    public static Message newNearbyMessage(String instanceId, String messageBody) {
+        DeviceMessage deviceMessage = new DeviceMessage(instanceId, messageBody);
         return new Message(gson.toJson(deviceMessage).getBytes(Charset.forName("UTF-8")));
     }
 
@@ -29,9 +27,9 @@ public class DeviceMessage {
         return gson.fromJson((new String(nearbyMessageString.getBytes(Charset.forName("UTF-8")))), DeviceMessage.class);
     }
 
-    private DeviceMessage(String uuid) {
+    private DeviceMessage(String uuid, String messageBody) {
         mUUID = uuid;
-        mMessageBody = Build.MODEL;
+        mMessageBody = messageBody;
         // TODO(developer): add other fields that must be included in the Nearby Message payload.
     }
 

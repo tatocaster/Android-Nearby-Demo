@@ -2,6 +2,7 @@ package me.tatocaster.nearbyconnection;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -105,8 +106,7 @@ public class NearbyMessagesActivity extends AppCompatActivity implements
 
         // Build the message that is going to be published. This contains the device name and a
         // UUID.
-        mPubMessage = DeviceMessage.newNearbyMessage(getUUID(getSharedPreferences(
-                getApplicationContext().getPackageName(), Context.MODE_PRIVATE)));
+        mPubMessage = DeviceMessage.newNearbyMessage(getUUID(getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE)), Build.MODEL);
 
         mMessageListener = new MessageListener() {
             @Override
