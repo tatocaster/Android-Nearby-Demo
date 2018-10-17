@@ -1,4 +1,4 @@
-#Android-Nearby Connections and Messages
+## Android-Nearby Connections and Messages
 
 showcase of Android Nearby messages and connections APIs
 
